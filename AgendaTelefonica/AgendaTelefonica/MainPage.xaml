@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AgendaTelefonica.MainPage">
+
+    <ContentPage Title="Añadir Contacto">
+        
+        <ContentPage.Resources>
+            
+            <ResourceDictionary>
+                
+                <Style TargetType="Button">
+                    <Setter Property="HorizontalOptions" Value="Center" />
+                    <Setter Property="VerticalOptions" Value="Center" />
+                    <Setter Property="CornerRadius" Value="5" />
+                    <Setter Property="BackgroundColor" Value="#1065B5" />
+                    <Setter Property="TextColor" Value="White" />
+                    <Setter Property="FontSize" Value="Small" />
+                </Style>
+
+                <Style TargetType="Entry">
+                    <Setter Property="TextColor" Value="Green" />
+                </Style>
+                
+            </ResourceDictionary>
+            
+        </ContentPage.Resources>
+
+        <ContentPage.Content>
+
+            <StackLayout>
+
+                <Entry x:Name="Name" Placeholder="Nombre" 
+                       ClearButtonVisibility="WhileEditing" />
+
+                <Entry x:Name="LastName" Placeholder="Apellido" 
+                       ClearButtonVisibility="WhileEditing" />
+
+                <Entry x:Name="Phone" Placeholder="Telefono" Keyboard="Numeric" 
+                       ClearButtonVisibility="WhileEditing" />
+
+                <Entry x:Name="Cellphone" Placeholder="Celular" Keyboard="Numeric"
+                       ClearButtonVisibility="WhileEditing" />
+
+                <Entry x:Name="Email" Placeholder="Correo Electronico" Keyboard="Email"
+                       ClearButtonVisibility="WhileEditing" />
+
+                <Button Text="Guardar" Clicked="GuardarContacto" />
+
+            </StackLayout>
+            
+        </ContentPage.Content>
+        
+    </ContentPage>
+
+
+    <ContentPage Title="Contactos">
+
+        <ContentPage.Resources>
+
+            <ResourceDictionary>
+
+                <Style TargetType="Label">
+                    <Setter Property="FontSize" Value="Subtitle" />
+                    <Setter Property="FontAttributes" Value="Bold" />
+                </Style>
+
+                <Style TargetType="Label" x:Key="label_titulo">
+                    <Setter Property="FontSize" Value="Title" />
+                    <Setter Property="FontAttributes" Value="Italic" />
+                    <Setter Property="TextColor" Value="LightBlue" />
+                </Style>
+                
+            </ResourceDictionary>
+            
+        </ContentPage.Resources>
+
+        <ContentPage.Content>
+
+            <ScrollView>
+
+                <StackLayout>
+
+                    <ListView x:Name="listado"
+                              Header="Mis Contactos"
+                              Footer="">
+
+                        <ListView.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <ViewCell>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding Nombre}" Grid.Column="0" />
+                                        <Label Text="{Binding Apellido}" Grid.Column="1" />
+                                        <Label Text="{Binding Telefono}" Grid.Column="2" />
+                                        <Label Text="{Binding Celular}" Grid.Column="3" />
+                                        <Label Text="{Binding Email}" Grid.Column="4" />
+                                    </Grid>
+                                    
+                                </ViewCell>
+                                
+                            </DataTemplate>
+                            
+                        </ListView.ItemTemplate>
+
+                        <ListView.HeaderTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                    <Label Text="Contactos Registrados" Style="{StaticResource label_titulo}" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </ListView.HeaderTemplate>
+
+                        <ListView.FooterTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                    <Label Text="Lista" Style="{StaticResource label_titulo}" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </ListView.FooterTemplate>
+                        
+                    </ListView>
+                    
+                </StackLayout>
+                
+            </ScrollView>
+            
+        </ContentPage.Content>
+        
+    </ContentPage>
+
+</TabbedPage>
